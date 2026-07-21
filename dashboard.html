@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Dashboard | Portfolio + Tasks</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        [x-cloak] { display: none !important; }
+        .task-enter { animation: slideIn 0.3s ease-out; }
+        .task-exit { animation: slideOut 0.3s ease-out forwards; }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideOut {
+            from { opacity: 1; transform: translateX(0); }
+            to { opacity: 0; transform: translateX(100%); }
+        }
+        .glow { box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
+        .scroll-smooth { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 min-h-screen" x-data="dashboardApp()" x-cloak>
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white/10 backdrop-blur-md border-b border-white/20 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <i data-lucide="zap" class="w-8 h-8 text-blue-400"></i>
+                <span class="text-2xl font-black text-white">Master Dashboard</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <button @click="currentView = 'portfolio'" :class="currentView === 'portfolio' ? 'text-blue-400 border-b-2 border-blue-400' : 'text-gray-300 hover:text-white'" class="pb-2 font-semibold transition-colors">
+                    Portfolio
+                </button>
+                <button @click="currentView = 'tasks'" :class="currentView === 'tasks' ? 'text-blue-400 border-b-2 border-blue-400' : 'text-gray-300 hover:text-white'" class="pb-2 font-semibold transition-colors">
+                    Tasks
+                </button>
+                <button @click="currentView = 'summary'" :class="currentView === 'summary' ? 'text-blue-400 border-b-2 border-blue-400' : 'text-gray-300 hover:text-white'" class="pb-2 font-semibold transition-colors">
+                    Summary
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- PORTFOLIO VIEW -->
+    <div x-show="currentView === 'portfolio'" class="min-h-screen py-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <!-- HEADER -->
+            <div class="text-center mb-12">
+                <h1 class="text-5xl md:text-6xl font-black text-white mb-4">Shiv Nandan Bhaskar</h1>
+                <p class="text-2xl text-blue-400 font-bold mb-2">Graphic Designer & Visual Artist</p>
+                <p class="text-gray-300 text-lg">Creating exceptional visual experiences through design</p>
+            </div>
+
+            <!-- PORTFOLIO HIGHLIGHTS -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <div class="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 hover:border-blue-400/50 transition-all glow">
+                    <div class="flex items-center gap-4 mb-4">
+                        <i data-lucide="palette" class="w-8 h-8 text-blue-400"></i>
+                        <h3 class="text-xl font-bold text-white">Manual Design</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4">6 professional projects crafted with pure human creativity</p>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li>✓ Puma: Kinetic Speed</li>
+                        <li>✓ MacBook: Zenith Air</li>
+                        <li>✓ The Ritual of Flame</li>
+                        <li>✓ Brand Identity System</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 hover:border-yellow-400/50 transition-all glow">
+                    <div class="flex items-center gap-4 mb-4">
+                        <i data-lucide="sparkles" class="w-8 h-8 text-yellow-400"></i>
+                        <h3 class="text-xl font-bold text-white">Graphic Design</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4">Comprehensive collection of social, print, and digital designs</p>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li>✓ Social Media Posts</li>
+                        <li>✓ Posters & Flyers</li>
+                        <li>✓ Logo Designs</li>
+                        <li>✓ Instagram Stories</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 hover:border-purple-400/50 transition-all glow">
+                    <div class="flex items-center gap-4 mb-4">
+                        <i data-lucide="bot" class="w-8 h-8 text-purple-400"></i>
+                        <h3 class="text-xl font-bold text-white">AI-Assisted</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4">10 projects showcasing human-AI collaboration</p>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li>✓ Midjourney + Photoshop</li>
+                        <li>✓ DALL-E 3 + Adobe Suite</li>
+                        <li>✓ Leonardo AI + Firefly</li>
+                        <li>✓ Creative Direction</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- TOOLS & SKILLS -->
+            <div class="bg-white/10 backdrop-blur-md rounded-xl p-8 border border-white/20 mb-12">
+                <h2 class="text-3xl font-bold text-white mb-8">Tools & Technologies</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <div class="text-4xl font-black text-blue-400 mb-2">Ps</div>
+                        <p class="text-gray-300 font-semibold">Photoshop</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-black text-blue-400 mb-2">Ai</div>
+                        <p class="text-gray-300 font-semibold">Illustrator</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-black text-yellow-400 mb-2">Mj</div>
+                        <p class="text-gray-300 font-semibold">Midjourney</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-black text-purple-400 mb-2">Id</div>
+                        <p class="text-gray-300 font-semibold">InDesign</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-black text-green-400 mb-2">Ff</div>
+                        <p class="text-gray-300 font-semibold">Figma</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-black text-red-400 mb-2">De</div>
+                        <p class="text-gray-300 font-semibold">DALL-E</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-black text-indigo-400 mb-2">Lr</div>
+                        <p class="text-gray-300 font-semibold">Lightroom</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-black text-cyan-400 mb-2">Af</div>
+                        <p class="text-gray-300 font-semibold">Adobe Firefly</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTACT -->
+            <div class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl p-8 text-center">
+                <h2 class="text-3xl font-bold text-white mb-6">Ready to Collaborate?</h2>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-6 mb-6">
+                    <a href="mailto:shivnandanbhaskar@gmail.com" class="flex items-center gap-2 text-white hover:text-gray-200 transition-colors">
+                        <i data-lucide="mail" class="w-5 h-5"></i>
+                        shivnandanbhaskar@gmail.com
+                    </a>
+                    <span class="text-white hidden md:inline">•</span>
+                    <a href="tel:+918102086650" class="flex items-center gap-2 text-white hover:text-gray-200 transition-colors">
+                        <i data-lucide="phone" class="w-5 h-5"></i>
+                        +91 8102086650
+                    </a>
+                </div>
+                <div class="flex gap-4 justify-center">
+                    <a href="https://linkedin.com" target="_blank" class="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center hover:bg-white hover:text-blue-600 transition-colors">In</a>
+                    <a href="https://behance.net" target="_blank" class="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center hover:bg-white hover:text-blue-600 transition-colors">Be</a>
+                    <a href="https://instagram.com" target="_blank" class="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center hover:bg-white hover:text-blue-600 transition-colors">Ig</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TASKS VIEW -->
+    <div x-show="currentView === 'tasks'" class="py-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h1 class="text-4xl font-bold text-white mb-8">Task Manager</h1>
+
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                <!-- STATS -->
+                <div class="space-y-4">
+                    <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white shadow-lg">
+                        <p class="text-blue-100 text-sm font-semibold mb-2">TOTAL</p>
+                        <p class="text-4xl font-black" x-text="tasks.length">0</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl p-6 text-white shadow-lg">
+                        <p class="text-emerald-100 text-sm font-semibold mb-2">COMPLETED</p>
+                        <p class="text-4xl font-black" x-text="tasks.filter(t => t.completed).length">0</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-6 text-white shadow-lg">
+                        <p class="text-orange-100 text-sm font-semibold mb-2">ACTIVE</p>
+                        <p class="text-4xl font-black" x-text="tasks.filter(t => !t.completed).length">0</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 text-white shadow-lg">
+                        <p class="text-red-100 text-sm font-semibold mb-2">HIGH PRIORITY</p>
+                        <p class="text-4xl font-black" x-text="tasks.filter(t => t.priority === 'high' && !t.completed).length">0</p>
+                    </div>
+                </div>
+
+                <!-- MAIN CONTENT -->
+                <div class="lg:col-span-3 space-y-6">
+                    <!-- INPUT -->
+                    <div class="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20">
+                        <form @submit.prevent="addTask()" class="space-y-4">
+                            <input 
+                                x-model="newTask" 
+                                @keyup.escape="newTask = ''"
+                                type="text" 
+                                placeholder="What needs to be done?" 
+                                class="w-full px-6 py-4 rounded-lg bg-white/10 text-white placeholder-gray-400 border border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                            >
+                            <div class="flex gap-3">
+                                <select x-model="newPriority" class="px-4 py-2 rounded-lg bg-white/10 text-white border border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                                    <option value="low" class="bg-slate-800">Low</option>
+                                    <option value="medium" class="bg-slate-800" selected>Medium</option>
+                                    <option value="high" class="bg-slate-800">High</option>
+                                </select>
+                                <button type="submit" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-bold transition-colors">
+                                    <i data-lucide="plus" class="w-5 h-5 inline mr-2"></i>Add Task
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- FILTERS -->
+                    <div class="flex gap-3 flex-wrap">
+                        <button @click="taskFilter = 'all'" :class="taskFilter === 'all' ? 'bg-blue-500 text-white' : 'bg-white/10 text-gray-300'" class="px-4 py-2 rounded-lg border border-white/20 transition-colors">All</button>
+                        <button @click="taskFilter = 'active'" :class="taskFilter === 'active' ? 'bg-orange-500 text-white' : 'bg-white/10 text-gray-300'" class="px-4 py-2 rounded-lg border border-white/20 transition-colors">Active</button>
+                        <button @click="taskFilter = 'completed'" :class="taskFilter === 'completed' ? 'bg-emerald-500 text-white' : 'bg-white/10 text-gray-300'" class="px-4 py-2 rounded-lg border border-white/20 transition-colors">Completed</button>
+                        <button @click="taskFilter = 'high'" :class="taskFilter === 'high' ? 'bg-red-500 text-white' : 'bg-white/10 text-gray-300'" class="px-4 py-2 rounded-lg border border-white/20 transition-colors">High Priority</button>
+                    </div>
+
+                    <!-- TASKS LIST -->
+                    <div class="space-y-3 max-h-96 overflow-y-auto">
+                        <template x-if="filteredTasks.length === 0">
+                            <div class="bg-white/10 rounded-xl p-8 text-center border border-white/20">
+                                <i data-lucide="inbox" class="w-12 h-12 text-gray-400 mx-auto mb-3"></i>
+                                <p class="text-gray-300">No tasks to display</p>
+                            </div>
+                        </template>
+                        <template x-for="task in filteredTasks" :key="task.id">
+                            <div class="task-enter bg-white/10 backdrop-blur-md rounded-lg p-4 border border-white/20 hover:border-blue-400/50 flex items-center gap-4 group">
+                                <input type="checkbox" :checked="task.completed" @change="toggleTask(task.id)" class="w-5 h-5 cursor-pointer">
+                                <div class="flex-1 min-w-0">
+                                    <p :class="task.completed ? 'line-through text-gray-400' : 'text-white'" class="font-medium break-words" x-text="task.text"></p>
+                                    <span :class="{'bg-red-500/30 text-red-200': task.priority === 'high', 'bg-yellow-500/30 text-yellow-200': task.priority === 'medium', 'bg-green-500/30 text-green-200': task.priority === 'low'}" class="text-xs px-2 py-1 rounded inline-block mt-1" x-text="task.priority"></span>
+                                </div>
+                                <button @click="deleteTask(task.id)" class="opacity-0 group-hover:opacity-100 p-2 text-red-400 hover:bg-red-500/20 rounded transition-all">
+                                    <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </template>
+                    </div>
+
+                    <!-- ACTIONS -->
+                    <template x-if="tasks.length > 0">
+                        <div class="flex gap-3">
+                            <button @click="clearCompleted()" :disabled="tasks.filter(t => t.completed).length === 0" class="px-6 py-2 bg-emerald-500 hover:bg-emerald-600 disabled:opacity-50 text-white rounded-lg font-semibold transition-colors">
+                                Clear Completed
+                            </button>
+                            <button @click="clearAll()" :disabled="tasks.length === 0" class="px-6 py-2 bg-red-500 hover:bg-red-600 disabled:opacity-50 text-white rounded-lg font-semibold transition-colors">
+                                Clear All
+                            </button>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUMMARY VIEW -->
+    <div x-show="currentView === 'summary'" class="py-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h1 class="text-4xl font-bold text-white mb-12">Dashboard Summary</h1>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <!-- PROJECT SUMMARY -->
+                <div class="bg-white/10 backdrop-blur-md rounded-xl p-8 border border-white/20">
+                    <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+                        <i data-lucide="briefcase" class="w-6 h-6 text-blue-400"></i>
+                        Portfolio Summary
+                    </h2>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center pb-3 border-b border-white/10">
+                            <span class="text-gray-300">Manual Projects</span>
+                            <span class="text-2xl font-bold text-blue-400">6</span>
+                        </div>
+                        <div class="flex justify-between items-center pb-3 border-b border-white/10">
+                            <span class="text-gray-300">Graphic Designs</span>
+                            <span class="text-2xl font-bold text-yellow-400">20+</span>
+                        </div>
+                        <div class="flex justify-between items-center pb-3 border-b border-white/10">
+                            <span class="text-gray-300">AI-Assisted Projects</span>
+                            <span class="text-2xl font-bold text-purple-400">10</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-300 font-semibold">Total Works</span>
+                            <span class="text-3xl font-bold text-green-400">36+</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TASK SUMMARY -->
+                <div class="bg-white/10 backdrop-blur-md rounded-xl p-8 border border-white/20">
+                    <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+                        <i data-lucide="check-square" class="w-6 h-6 text-emerald-400"></i>
+                        Task Summary
+                    </h2>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center pb-3 border-b border-white/10">
+                            <span class="text-gray-300">Total Tasks</span>
+                            <span class="text-2xl font-bold text-blue-400" x-text="tasks.length">0</span>
+                        </div>
+                        <div class="flex justify-between items-center pb-3 border-b border-white/10">
+                            <span class="text-gray-300">Completed</span>
+                            <span class="text-2xl font-bold text-emerald-400" x-text="tasks.filter(t => t.completed).length">0</span>
+                        </div>
+                        <div class="flex justify-between items-center pb-3 border-b border-white/10">
+                            <span class="text-gray-300">In Progress</span>
+                            <span class="text-2xl font-bold text-orange-400" x-text="tasks.filter(t => !t.completed).length">0</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-300 font-semibold">Completion Rate</span>
+                            <span class="text-3xl font-bold text-purple-400" x-text="tasks.length > 0 ? Math.round((tasks.filter(t => t.completed).length / tasks.length) * 100) + '%' : '0%'">0%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KEY FEATURES -->
+            <div class="bg-white/10 backdrop-blur-md rounded-xl p-8 border border-white/20 mb-12">
+                <h2 class="text-2xl font-bold text-white mb-8">Key Features</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="flex gap-4">
+                        <i data-lucide="zap" class="w-6 h-6 text-blue-400 flex-shrink-0 mt-1"></i>
+                        <div>
+                            <h3 class="font-bold text-white mb-1">Multi-View Dashboard</h3>
+                            <p class="text-gray-300 text-sm">Switch between portfolio, tasks, and summary views</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <i data-lucide="save" class="w-6 h-6 text-emerald-400 flex-shrink-0 mt-1"></i>
+                        <div>
+                            <h3 class="font-bold text-white mb-1">Local Storage</h3>
+                            <p class="text-gray-300 text-sm">All tasks auto-save and persist across sessions</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <i data-lucide="filter" class="w-6 h-6 text-yellow-400 flex-shrink-0 mt-1"></i>
+                        <div>
+                            <h3 class="font-bold text-white mb-1">Smart Filtering</h3>
+                            <p class="text-gray-300 text-sm">Filter by all, active, completed, or priority</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <i data-lucide="trending-up" class="w-6 h-6 text-purple-400 flex-shrink-0 mt-1"></i>
+                        <div>
+                            <h3 class="font-bold text-white mb-1">Real-time Analytics</h3>
+                            <p class="text-gray-300 text-sm">Live statistics and completion tracking</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <i data-lucide="palette" class="w-6 h-6 text-pink-400 flex-shrink-0 mt-1"></i>
+                        <div>
+                            <h3 class="font-bold text-white mb-1">Beautiful Design</h3>
+                            <p class="text-gray-300 text-sm">Modern UI with glassmorphism and gradients</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <i data-lucide="smartphone" class="w-6 h-6 text-cyan-400 flex-shrink-0 mt-1"></i>
+                        <div>
+                            <h3 class="font-bold text-white mb-1">Fully Responsive</h3>
+                            <p class="text-gray-300 text-sm">Works seamlessly on all devices</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROJECTS CREATED -->
+            <div class="bg-white/10 backdrop-blur-md rounded-xl p-8 border border-white/20">
+                <h2 class="text-2xl font-bold text-white mb-8">Projects Created</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white/5 rounded-lg p-6 border border-white/10">
+                        <div class="flex items-center gap-2 mb-3">
+                            <i data-lucide="globe" class="w-5 h-5 text-blue-400"></i>
+                            <h3 class="font-bold text-white">index.html</h3>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-3">Enhanced portfolio website with 3 categories of design work</p>
+                        <p class="text-xs text-gray-400">41.7 KB • Portfolio</p>
+                    </div>
+                    <div class="bg-white/5 rounded-lg p-6 border border-white/10">
+                        <div class="flex items-center gap-2 mb-3">
+                            <i data-lucide="check-square" class="w-5 h-5 text-emerald-400"></i>
+                            <h3 class="font-bold text-white">todo-app.html</h3>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-3">Basic to-do list with local storage and filtering</p>
+                        <p class="text-xs text-gray-400">14.4 KB • Task Manager</p>
+                    </div>
+                    <div class="bg-white/5 rounded-lg p-6 border border-white/10">
+                        <div class="flex items-center gap-2 mb-3">
+                            <i data-lucide="zap" class="w-5 h-5 text-purple-400"></i>
+                            <h3 class="font-bold text-white">todo-app-advanced.html</h3>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-3">Advanced to-do with priorities, stats, and export</p>
+                        <p class="text-xs text-gray-400">21.4 KB • Advanced Tasks</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function dashboardApp() {
+            return {
+                currentView: 'portfolio',
+                tasks: [],
+                newTask: '',
+                newPriority: 'medium',
+                taskFilter: 'all',
+
+                init() {
+                    this.loadTasks();
+                    this.$watch('tasks', () => this.saveTasks(), { deep: true });
+                    this.$watch('tasks', () => {
+                        setTimeout(() => lucide.createIcons(), 0);
+                    }, { deep: true });
+                },
+
+                addTask() {
+                    if (this.newTask.trim() === '') return;
+                    const task = {
+                        id: Date.now(),
+                        text: this.newTask.trim(),
+                        completed: false,
+                        priority: this.newPriority,
+                        created: new Date().toISOString()
+                    };
+                    this.tasks.unshift(task);
+                    this.newTask = '';
+                    this.newPriority = 'medium';
+                },
+
+                toggleTask(id) {
+                    const task = this.tasks.find(t => t.id === id);
+                    if (task) task.completed = !task.completed;
+                },
+
+                deleteTask(id) {
+                    this.tasks = this.tasks.filter(t => t.id !== id);
+                },
+
+                clearCompleted() {
+                    this.tasks = this.tasks.filter(t => !t.completed);
+                },
+
+                clearAll() {
+                    if (confirm('Delete all tasks?')) {
+                        this.tasks = [];
+                    }
+                },
+
+                get filteredTasks() {
+                    switch (this.taskFilter) {
+                        case 'active':
+                            return this.tasks.filter(t => !t.completed);
+                        case 'completed':
+                            return this.tasks.filter(t => t.completed);
+                        case 'high':
+                            return this.tasks.filter(t => t.priority === 'high' && !t.completed);
+                        default:
+                            return this.tasks;
+                    }
+                },
+
+                saveTasks() {
+                    localStorage.setItem('masterDashboardTodos', JSON.stringify(this.tasks));
+                },
+
+                loadTasks() {
+                    const saved = localStorage.getItem('masterDashboardTodos');
+                    if (saved) {
+                        try {
+                            this.tasks = JSON.parse(saved);
+                        } catch (e) {
+                            this.tasks = [];
+                        }
+                    }
+                }
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
