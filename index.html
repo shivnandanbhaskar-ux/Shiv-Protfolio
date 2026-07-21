@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shiv Nandan Bhaskar | Graphic Designer & Visual Artist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        .serif { font-family: 'Playfair Display', serif; }
+        .text-outline { -webkit-text-stroke: 1px rgba(255,255,255,0.3); color: transparent; }
+        .bg-glass { background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(10px); }
+        .project-card:hover img { transform: scale(1.05); }
+        .gradient-border { border-image: linear-gradient(to right, #3b82f6, #8b5cf6) 1; }
+        [x-cloak] { display: none !important; }
+    </style>
+</head>
+<body class="bg-[#050505] text-zinc-100 selection:bg-blue-500" x-data="{ mobileMenuOpen: false }">
+
+    <!-- NAVIGATION -->
+    <nav class="fixed w-full z-50 px-6 py-4 flex justify-between items-center bg-glass border-b border-zinc-800">
+        <div class="text-xl font-black tracking-tighter uppercase">SHIV NANDAN</div>
+        <div class="hidden md:flex space-x-8 text-[10px] tracking-[0.2em] uppercase font-bold">
+            <a href="#manual" class="hover:text-blue-400 transition">Manual Work</a>
+            <a href="#graphics" class="hover:text-yellow-400 transition">Graphic Design</a>
+            <a href="#ai" class="hover:text-purple-400 transition">AI Assisted</a>
+            <a href="#process" class="hover:text-zinc-400 transition">Process</a>
+            <a href="#contact" class="hover:text-zinc-400 transition">Contact</a>
+        </div>
+        <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden" x-cloak>
+            <i data-lucide="menu"></i>
+        </button>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div x-show="mobileMenuOpen" class="fixed inset-0 z-40 bg-black/90 pt-20 md:hidden" x-cloak @click.outside="mobileMenuOpen = false">
+        <div class="flex flex-col space-y-4 px-6 text-center">
+            <a href="#manual" class="py-2 hover:text-blue-400 transition uppercase text-sm" @click="mobileMenuOpen = false">Manual Work</a>
+            <a href="#graphics" class="py-2 hover:text-yellow-400 transition uppercase text-sm" @click="mobileMenuOpen = false">Graphic Design</a>
+            <a href="#ai" class="py-2 hover:text-purple-400 transition uppercase text-sm" @click="mobileMenuOpen = false">AI Assisted</a>
+            <a href="#process" class="py-2 hover:text-zinc-400 transition uppercase text-sm" @click="mobileMenuOpen = false">Process</a>
+            <a href="#contact" class="py-2 hover:text-zinc-400 transition uppercase text-sm" @click="mobileMenuOpen = false">Contact</a>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="min-h-screen flex flex-col justify-center px-6 md:px-20 pt-20">
+        <h2 class="text-blue-500 font-mono text-sm mb-4 tracking-widest uppercase">Graphic Designer & Visual Artist</h2>
+        <h1 class="text-6xl md:text-[120px] font-black leading-[0.9] tracking-tighter uppercase mb-8">
+            Visual <br> <span class="text-outline">Architecture</span>
+        </h1>
+        <div class="max-w-2xl text-zinc-400 text-lg md:text-xl font-light leading-relaxed">
+            I craft visual narratives through professional graphic design and creative direction. 
+            <span class="text-white font-medium">AI can generate possibilities. A designer creates the final vision.</span>
+        </div>
+        <div class="mt-12 flex space-x-6">
+            <a href="#manual" class="bg-white text-black px-8 py-4 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-blue-500 hover:text-white transition-all">View Manual Work</a>
+            <a href="#graphics" class="border border-zinc-700 px-8 py-4 rounded-full font-bold uppercase text-xs tracking-widest hover:border-yellow-500 transition-all">Graphic Design</a>
+        </div>
+    </section>
+
+    <!-- MANUAL DESIGN SECTION (EXPANDED) -->
+    <section id="manual" class="py-24 px-6 md:px-20 border-t border-zinc-900">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
+            <div>
+                <h2 class="text-xs font-mono text-zinc-500 uppercase tracking-[0.5em] mb-2">Category 01</h2>
+                <h3 class="text-5xl font-black uppercase tracking-tighter">Crafted by Design</h3>
+            </div>
+            <p class="text-zinc-500 max-w-xs text-sm">Professional design workflows. Pure human creativity. Manual visual execution.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <!-- PUMA PROJECT -->
+            <div class="group">
+                <div class="overflow-hidden bg-zinc-900 aspect-video mb-6 rounded-2xl relative">
+                    <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-700">
+                </div>
+                <div class="grid grid-cols-3 gap-4">
+                    <div class="col-span-2">
+                        <h4 class="text-2xl font-bold uppercase tracking-tight">Puma: Kinetic Speed</h4>
+                        <p class="text-zinc-500 text-sm mt-2 leading-relaxed">A sportswear campaign exploring performance through bold typography and dynamic composition.</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-[10px] border border-zinc-700 px-3 py-1 rounded-full uppercase">Manual Design</span>
+                    </div>
+                </div>
+                <div class="mt-6 p-6 bg-zinc-900/50 rounded-xl text-xs space-y-2">
+                    <p><span class="text-blue-500">OBJECTIVE:</span> Visualizing speed without generic athletic tropes.</p>
+                    <p><span class="text-blue-500">TOOLS:</span> Photoshop, Illustrator, InDesign.</p>
+                </div>
+            </div>
+
+            <!-- MACBOOK PROJECT -->
+            <div class="group">
+                <div class="overflow-hidden bg-zinc-900 aspect-video mb-6 rounded-2xl relative">
+                    <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-700">
+                </div>
+                <div class="grid grid-cols-3 gap-4">
+                    <div class="col-span-2">
+                        <h4 class="text-2xl font-bold uppercase tracking-tight">MacBook: Zenith Air</h4>
+                        <p class="text-zinc-500 text-sm mt-2 leading-relaxed">Premium technology advertising focusing on minimalist aesthetic and visual hierarchy.</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-[10px] border border-zinc-700 px-3 py-1 rounded-full uppercase">Product Design</span>
+                    </div>
+                </div>
+                <div class="mt-6 p-6 bg-zinc-900/50 rounded-xl text-xs space-y-2">
+                    <p><span class="text-blue-500">CONCEPT:</span> "Weightless Power" - utilizing massive negative space.</p>
+                    <p><span class="text-blue-500">STYLE:</span> Minimalist / Luxury High-Tech.</p>
+                </div>
+            </div>
+
+            <!-- BURGER KING PROJECT -->
+            <div class="group">
+                <div class="overflow-hidden bg-zinc-900 aspect-video mb-6 rounded-2xl relative">
+                    <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-700">
+                </div>
+                <div class="grid grid-cols-3 gap-4">
+                    <div class="col-span-2">
+                        <h4 class="text-2xl font-bold uppercase tracking-tight">The Ritual of Flame</h4>
+                        <p class="text-zinc-500 text-sm mt-2 leading-relaxed">An original food advertising concept focusing on appetite appeal and vibrant palettes.</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-[10px] border border-zinc-700 px-3 py-1 rounded-full uppercase">Advertising</span>
+                    </div>
+                </div>
+                <div class="mt-6 p-6 bg-zinc-900/50 rounded-xl text-xs space-y-2">
+                    <p><span class="text-blue-500">CHALLENGE:</span> Creating appetite appeal without clichés.</p>
+                    <p><span class="text-blue-500">EXECUTION:</span> Fire element as central design metaphor.</p>
+                </div>
+            </div>
+
+            <!-- EDUCATION PROJECT -->
+            <div class="group">
+                <div class="overflow-hidden bg-zinc-900 aspect-video mb-6 rounded-2xl relative">
+                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-700">
+                </div>
+                <div class="grid grid-cols-3 gap-4">
+                    <div class="col-span-2">
+                        <h4 class="text-2xl font-bold uppercase tracking-tight">Educational Infographics</h4>
+                        <p class="text-zinc-500 text-sm mt-2 leading-relaxed">Simplifying complex knowledge through clean information design and visual clarity.</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-[10px] border border-zinc-700 px-3 py-1 rounded-full uppercase">Info Design</span>
+                    </div>
+                </div>
+                <div class="mt-6 p-6 bg-zinc-900/50 rounded-xl text-xs space-y-2">
+                    <p><span class="text-blue-500">GOAL:</span> Making data digestible for diverse audiences.</p>
+                    <p><span class="text-blue-500">APPROACH:</span> Hierarchical color coding and modular layout.</p>
+                </div>
+            </div>
+
+            <!-- BRAND IDENTITY PROJECT -->
+            <div class="group">
+                <div class="overflow-hidden bg-zinc-900 aspect-video mb-6 rounded-2xl relative">
+                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-700">
+                </div>
+                <div class="grid grid-cols-3 gap-4">
+                    <div class="col-span-2">
+                        <h4 class="text-2xl font-bold uppercase tracking-tight">Brand Identity System</h4>
+                        <p class="text-zinc-500 text-sm mt-2 leading-relaxed">Complete branding ecosystem including logo, color palette, typography, and guidelines.</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-[10px] border border-zinc-700 px-3 py-1 rounded-full uppercase">Branding</span>
+                    </div>
+                </div>
+                <div class="mt-6 p-6 bg-zinc-900/50 rounded-xl text-xs space-y-2">
+                    <p><span class="text-blue-500">SCOPE:</span> Logo design, brand guidelines, collateral.</p>
+                    <p><span class="text-blue-500">RESULT:</span> Cohesive brand identity across all touchpoints.</p>
+                </div>
+            </div>
+
+            <!-- PACKAGING DESIGN PROJECT -->
+            <div class="group">
+                <div class="overflow-hidden bg-zinc-900 aspect-video mb-6 rounded-2xl relative">
+                    <img src="https://images.unsplash.com/photo-1594787318286-3d835c1cadfb?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-700">
+                </div>
+                <div class="grid grid-cols-3 gap-4">
+                    <div class="col-span-2">
+                        <h4 class="text-2xl font-bold uppercase tracking-tight">Luxury Packaging Design</h4>
+                        <p class="text-zinc-500 text-sm mt-2 leading-relaxed">Premium product packaging with embossing, foiling, and structural innovation.</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-[10px] border border-zinc-700 px-3 py-1 rounded-full uppercase">Packaging</span>
+                    </div>
+                </div>
+                <div class="mt-6 p-6 bg-zinc-900/50 rounded-xl text-xs space-y-2">
+                    <p><span class="text-blue-500">MATERIALS:</span> Special finishes, tactile elements, sustainable materials.</p>
+                    <p><span class="text-blue-500">IMPACT:</span> Enhanced shelf appeal and brand perception.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="mt-16 text-center">
+            <a href="#graphics" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-12 py-4 rounded-full font-bold uppercase text-xs tracking-widest transition-all">
+                Explore Graphic Design Collection →
+            </a>
+        </div>
+    </section>
+
+    <!-- GRAPHIC DESIGN SECTION (NEW) -->
+    <section id="graphics" class="py-24 px-6 md:px-20 bg-gradient-to-b from-zinc-950 to-[#050505] border-t border-zinc-900">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
+            <div>
+                <h2 class="text-xs font-mono text-yellow-500 uppercase tracking-[0.5em] mb-2">Category 02</h2>
+                <h3 class="text-5xl font-black uppercase tracking-tighter">Graphic Design<br/>Collection</h3>
+            </div>
+            <p class="text-zinc-500 max-w-xs text-sm">Social media designs, posters, flyers, logos, business cards, and Instagram content.</p>
+        </div>
+
+        <!-- SOCIAL MEDIA DESIGNS -->
+        <div class="mb-20">
+            <h4 class="text-2xl font-bold uppercase tracking-tight mb-8 text-yellow-400">Social Media Post Designs</h4>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="group cursor-pointer">
+                    <div class="bg-zinc-900 aspect-square rounded-xl overflow-hidden mb-4 hover:shadow-lg hover:shadow-yellow-500/20 transition duration-300">
+                        <img src="https://images.unsplash.com/photo-1601288496920-b6154fe3626a?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <p class="text-xs font-bold uppercase">Fitness Motivation</p>
+                </div>
+                <div class="group cursor-pointer">
+                    <div class="bg-zinc-900 aspect-square rounded-xl overflow-hidden mb-4 hover:shadow-lg hover:shadow-yellow-500/20 transition duration-300">
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <p class="text-xs font-bold uppercase">Adventure Campaign</p>
+                </div>
+                <div class="group cursor-pointer">
+                    <div class="bg-zinc-900 aspect-square rounded-xl overflow-hidden mb-4 hover:shadow-lg hover:shadow-yellow-500/20 transition duration-300">
+                        <img src="https://images.unsplash.com/photo-1495521821757-a1efb6729352?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <p class="text-xs font-bold uppercase">Healthy Lifestyle</p>
+                </div>
+                <div class="group cursor-pointer">
+                    <div class="bg-zinc-900 aspect-square rounded-xl overflow-hidden mb-4 hover:shadow-lg hover:shadow-yellow-500/20 transition duration-300">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06a6b1ef7a0?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <p class="text-xs font-bold uppercase">Night Event</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- POSTER DESIGNS -->
+        <div class="mb-20">
+            <h4 class="text-2xl font-bold uppercase tracking-tight mb-8 text-yellow-400">Poster Designs</h4>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="group">
+                    <div class="bg-zinc-900 aspect-[3/4] rounded-xl overflow-hidden mb-4 hover:shadow-lg hover:shadow-yellow-500/20 transition duration-300">
+                        <img src="https://images.unsplash.com/photo-1540575467063-178f50002cbc?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <h5 class="text-sm font-bold uppercase">Focus & Discipline</h5>
+                    <p class="text-xs text-zinc-500 mt-2">Motivational poster for corporate offices</p>
+                </div>
+                <div class="group">
+                    <div class="bg-zinc-900 aspect-[3/4] rounded-xl overflow-hidden mb-4 hover:shadow-lg hover:shadow-yellow-500/20 transition duration-300">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <h5 class="text-sm font-bold uppercase">Save the Planet</h5>
+                    <p class="text-xs text-zinc-500 mt-2">Environmental awareness campaign</p>
+                </div>
+                <div class="group">
+                    <div class="bg-zinc-900 aspect-[3/4] rounded-xl overflow-hidden mb-4 hover:shadow-lg hover:shadow-yellow-500/20 transition duration-300">
+                        <img src="https://images.unsplash.com/photo-1574375927261-d3a3bef2351c?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <h5 class="text-sm font-bold uppercase">Gym Power</h5>
+                    <p class="text-xs text-zinc-500 mt-2">Fitness center promotional poster</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FLYER DESIGNS -->
+        <div class="mb-20">
+            <h4 class="text-2xl font-bold uppercase tracking-tight mb-8 text-yellow-400">Flyer Designs</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="group">
+                    <div class="bg-zinc-900 aspect-[8.5/11] rounded-xl overflow-hidden mb-4 hover:shadow-lg hover:shadow-yellow-500/20 transition duration-300">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <h5 class="text-sm font-bold uppercase">Business Conference</h5>
+                    <p class="text-xs text-zinc-500 mt-2">Professional event flyer with QR code integration</p>
+                </div>
+                <div class="group">
+                    <div class="bg-zinc-900 aspect-[8.5/11] rounded-xl overflow-hidden mb-4 hover:shadow-lg hover:shadow-yellow-500/20 transition duration-300">
+                        <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <h5 class="text-sm font-bold uppercase">Music Festival</h5>
+                    <p class="text-xs text-zinc-500 mt-2">Vibrant event promotion with artist lineup</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- LOGO & BRAND MARK DESIGNS -->
+        <div class="mb-20">
+            <h4 class="text-2xl font-bold uppercase tracking-tight mb-8 text-yellow-400">Logo & Brand Marks</h4>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="bg-white/10 aspect-square rounded-xl p-6 flex items-center justify-center hover:bg-yellow-500/10 transition duration-300 group">
+                    <div class="text-center">
+                        <p class="text-2xl font-black text-white mb-2">M</p>
+                        <p class="text-xs uppercase font-bold text-zinc-400">Minimal Studio</p>
+                    </div>
+                </div>
+                <div class="bg-white/10 aspect-square rounded-xl p-6 flex items-center justify-center hover:bg-yellow-500/10 transition duration-300 group">
+                    <div class="text-center">
+                        <p class="text-2xl font-black text-white mb-2">||</p>
+                        <p class="text-xs uppercase font-bold text-zinc-400">Elevate Fitness</p>
+                    </div>
+                </div>
+                <div class="bg-white/10 aspect-square rounded-xl p-6 flex items-center justify-center hover:bg-yellow-500/10 transition duration-300 group">
+                    <div class="text-center">
+                        <p class="text-2xl font-black text-green-400 mb-2">🌿</p>
+                        <p class="text-xs uppercase font-bold text-zinc-400">Leafy Organics</p>
+                    </div>
+                </div>
+                <div class="bg-white/10 aspect-square rounded-xl p-6 flex items-center justify-center hover:bg-yellow-500/10 transition duration-300 group">
+                    <div class="text-center">
+                        <p class="text-2xl font-black text-blue-400 mb-2">~</p>
+                        <p class="text-xs uppercase font-bold text-zinc-400">Wave Travel</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BUSINESS CARD DESIGNS -->
+        <div class="mb-20">
+            <h4 class="text-2xl font-bold uppercase tracking-tight mb-8 text-yellow-400">Business Card Designs</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="group">
+                    <div class="bg-gradient-to-r from-blue-600 to-blue-500 aspect-[85/54] rounded-lg overflow-hidden mb-4 hover:shadow-lg hover:shadow-yellow-500/30 transition duration-300 p-4 flex flex-col justify-between">
+                        <div>
+                            <p class="text-white font-bold text-sm">Shiv Nandan Bhaskar</p>
+                            <p class="text-white/80 text-xs">Graphic Designer</p>
+                        </div>
+                        <div class="text-white text-xs space-y-1">
+                            <p>shivnandanbhaskar@gmail.com</p>
+                            <p>+91 8102086650</p>
+                        </div>
+                    </div>
+                    <p class="text-xs font-bold uppercase">Modern Blue Design</p>
+                </div>
+                <div class="group">
+                    <div class="bg-black border-2 border-zinc-300 aspect-[85/54] rounded-lg overflow-hidden mb-4 hover:shadow-lg hover:shadow-yellow-500/30 transition duration-300 p-4 flex flex-col justify-between">
+                        <div>
+                            <p class="text-white font-bold text-sm">Shiv Nandan Bhaskar</p>
+                            <p class="text-zinc-400 text-xs">Creative Director</p>
+                        </div>
+                        <div class="text-white text-xs space-y-1">
+                            <p>shivnandanbhaskar@gmail.com</p>
+                            <p>+91 8102086650</p>
+                        </div>
+                    </div>
+                    <p class="text-xs font-bold uppercase">Minimalist Monochrome</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- INSTAGRAM STORIES -->
+        <div class="mb-20">
+            <h4 class="text-2xl font-bold uppercase tracking-tight mb-8 text-yellow-400">Instagram Story Designs</h4>
+            <div class="grid grid-cols-3 md:grid-cols-6 gap-4">
+                <div class="bg-zinc-900 aspect-[9/16] rounded-lg overflow-hidden hover:shadow-lg hover:shadow-yellow-500/20 transition duration-300">
+                    <img src="https://images.unsplash.com/photo-1578399727409-d41de8299c67?auto=format&fit=crop&q=80&w=300" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                </div>
+                <div class="bg-zinc-900 aspect-[9/16] rounded-lg overflow-hidden hover:shadow-lg hover:shadow-yellow-500/20 transition duration-300">
+                    <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&q=80&w=300" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                </div>
+                <div class="bg-zinc-900 aspect-[9/16] rounded-lg overflow-hidden hover:shadow-lg hover:shadow-yellow-500/20 transition duration-300">
+                    <img src="https://images.unsplash.com/photo-1504681869696-d977e9d34c1d?auto=format&fit=crop&q=80&w=300" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                </div>
+                <div class="bg-zinc-900 aspect-[9/16] rounded-lg overflow-hidden hover:shadow-lg hover:shadow-yellow-500/20 transition duration-300">
+                    <img src="https://images.unsplash.com/photo-1468147410777-c3ac2a74d97f?auto=format&fit=crop&q=80&w=300" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                </div>
+                <div class="bg-zinc-900 aspect-[9/16] rounded-lg overflow-hidden hover:shadow-lg hover:shadow-yellow-500/20 transition duration-300">
+                    <img src="https://images.unsplash.com/photo-1475274047050-1d0c0975c63e?auto=format&fit=crop&q=80&w=300" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                </div>
+                <div class="bg-zinc-900 aspect-[9/16] rounded-lg overflow-hidden hover:shadow-lg hover:shadow-yellow-500/20 transition duration-300">
+                    <img src="https://images.unsplash.com/photo-1487215078519-e21cc028cb29?auto=format&fit=crop&q=80&w=300" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="text-center">
+            <a href="#ai" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black px-12 py-4 rounded-full font-bold uppercase text-xs tracking-widest transition-all">
+                View AI-Assisted Work →
+            </a>
+        </div>
+    </section>
+
+    <!-- AI ASSISTED DESIGN SECTION -->
+    <section id="ai" class="py-24 px-6 md:px-20 bg-zinc-950 border-t border-zinc-900">
+        <div class="mb-16">
+            <h2 class="text-xs font-mono text-purple-500 uppercase tracking-[0.5em] mb-2">Category 03</h2>
+            <h3 class="text-5xl font-black uppercase tracking-tighter mb-4 italic serif">Designed with AI. <br>Directed by Creativity.</h3>
+            <div class="h-1 w-20 bg-purple-500"></div>
+        </div>
+
+        <!-- 10 AI PROJECTS GRID -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- AI PROJECT 1 -->
+            <div class="bg-zinc-900 p-6 rounded-3xl border border-zinc-800 hover:border-purple-500/50 transition">
+                <div class="aspect-square bg-black rounded-2xl mb-6 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500">
+                </div>
+                <h5 class="font-bold uppercase tracking-widest text-sm mb-2">01. AI Product Ad</h5>
+                <p class="text-zinc-500 text-xs mb-4">Prompting for surreal lighting. Refined manually for brand alignment.</p>
+                <div class="text-[9px] font-mono text-purple-400 uppercase">Midjourney + Photoshop</div>
+            </div>
+
+            <!-- AI PROJECT 2 -->
+            <div class="bg-zinc-900 p-6 rounded-3xl border border-zinc-800 hover:border-purple-500/50 transition">
+                <div class="aspect-square bg-black rounded-2xl mb-6 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500">
+                </div>
+                <h5 class="font-bold uppercase tracking-widest text-sm mb-2">02. AI Sportswear</h5>
+                <p class="text-zinc-500 text-xs mb-4">Cyber-running concepts. AI generated motion blur; manual type design.</p>
+                <div class="text-[9px] font-mono text-purple-400 uppercase">Stable Diffusion + Illustrator</div>
+            </div>
+
+            <!-- AI PROJECT 3 (Food) -->
+            <div class="bg-zinc-900 p-6 rounded-3xl border border-zinc-800 hover:border-purple-500/50 transition">
+                <div class="aspect-square bg-black rounded-2xl mb-6 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500">
+                </div>
+                <h5 class="font-bold uppercase tracking-widest text-sm mb-2">03. AI Food Ad</h5>
+                <p class="text-zinc-500 text-xs mb-4">Hyper-real food textures generated via AI. Manual color correction.</p>
+                <div class="text-[9px] font-mono text-purple-400 uppercase">DALL-E 3 + Lightroom</div>
+            </div>
+
+            <!-- AI PROJECT 4 (Tech) -->
+            <div class="bg-zinc-900 p-6 rounded-3xl border border-zinc-800 hover:border-purple-500/50 transition">
+                <div class="aspect-square bg-black rounded-2xl mb-6 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500">
+                </div>
+                <h5 class="font-bold uppercase tracking-widest text-sm mb-2">04. AI Futuristic Tech</h5>
+                <p class="text-zinc-500 text-xs mb-4">Neural interface concepts. Human art direction on UI components.</p>
+                <div class="text-[9px] font-mono text-purple-400 uppercase">Leonardo AI + PS</div>
+            </div>
+
+            <!-- AI PROJECT 5 (Minimal) -->
+            <div class="bg-zinc-900 p-6 rounded-3xl border border-zinc-800 hover:border-purple-500/50 transition">
+                <div class="aspect-square bg-black rounded-2xl mb-6 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500">
+                </div>
+                <h5 class="font-bold uppercase tracking-widest text-sm mb-2">05. AI Minimal Poster</h5>
+                <p class="text-zinc-500 text-xs mb-4">Architectural negative space. AI layout exploration.</p>
+                <div class="text-[9px] font-mono text-purple-400 uppercase">Midjourney</div>
+            </div>
+
+            <!-- AI PROJECT 6 (Education) -->
+            <div class="bg-zinc-900 p-6 rounded-3xl border border-zinc-800 hover:border-purple-500/50 transition">
+                <div class="aspect-square bg-black rounded-2xl mb-6 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500">
+                </div>
+                <h5 class="font-bold uppercase tracking-widest text-sm mb-2">06. AI Educational Design</h5>
+                <p class="text-zinc-500 text-xs mb-4">Visualization of abstract learning concepts using neural nets.</p>
+                <div class="text-[9px] font-mono text-purple-400 uppercase">Adobe Firefly</div>
+            </div>
+
+             <!-- AI PROJECT 7 (Fashion) -->
+             <div class="bg-zinc-900 p-6 rounded-3xl border border-zinc-800 hover:border-purple-500/50 transition">
+                <div class="aspect-square bg-black rounded-2xl mb-6 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500">
+                </div>
+                <h5 class="font-bold uppercase tracking-widest text-sm mb-2">07. AI Fashion Campaign</h5>
+                <p class="text-zinc-500 text-xs mb-4">Bio-digital fabric textures. Directed for luxury editorial feel.</p>
+                <div class="text-[9px] font-mono text-purple-400 uppercase">Midjourney</div>
+            </div>
+
+            <!-- AI PROJECT 8 (Art) -->
+            <div class="bg-zinc-900 p-6 rounded-3xl border border-zinc-800 hover:border-purple-500/50 transition">
+                <div class="aspect-square bg-black rounded-2xl mb-6 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500">
+                </div>
+                <h5 class="font-bold uppercase tracking-widest text-sm mb-2">08. AI Creative Art</h5>
+                <p class="text-zinc-500 text-xs mb-4">Surrealist visual storytelling using generative conceptualization.</p>
+                <div class="text-[9px] font-mono text-purple-400 uppercase">DALL-E + PS</div>
+            </div>
+
+            <!-- AI PROJECT 9 (Brand) -->
+            <div class="bg-zinc-900 p-6 rounded-3xl border border-zinc-800 hover:border-purple-500/50 transition">
+                <div class="aspect-square bg-black rounded-2xl mb-6 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1560157368-946d9c8f7cb3?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500">
+                </div>
+                <h5 class="font-bold uppercase tracking-widest text-sm mb-2">09. AI Brand Identity</h5>
+                <p class="text-zinc-500 text-xs mb-4">Fictional brand "E-Cargo". AI for logo ideation; manual execution.</p>
+                <div class="text-[9px] font-mono text-purple-400 uppercase">ChatGPT + Illustrator</div>
+            </div>
+
+            <!-- AI PROJECT 10 (Future) -->
+            <div class="bg-zinc-900 p-6 rounded-3xl border border-zinc-800 hover:border-purple-500/50 transition">
+                <div class="aspect-square bg-black rounded-2xl mb-6 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500">
+                </div>
+                <h5 class="font-bold uppercase tracking-widest text-sm mb-2">10. Future of Design</h5>
+                <p class="text-zinc-500 text-xs mb-4">Conceptual piece on Human-AI collaboration in visual arts.</p>
+                <div class="text-[9px] font-mono text-purple-400 uppercase">Midjourney + Firefly</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI TOOLS & PROCESS -->
+    <section id="process" class="py-24 px-6 md:px-20 border-t border-zinc-900">
+        <h3 class="text-4xl font-black uppercase mb-16 tracking-tighter">My Creative Workflow</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
+            <div>
+                <h4 class="text-xs font-mono text-blue-500 uppercase tracking-widest mb-8 underline underline-offset-8">AI Tools in my Stack</h4>
+                <ul class="space-y-6">
+                    <li class="flex justify-between items-center border-b border-zinc-800 pb-4">
+                        <span class="font-bold uppercase">ChatGPT</span>
+                        <span class="text-zinc-500 text-xs text-right">Ideation, Concept Writing</span>
+                    </li>
+                    <li class="flex justify-between items-center border-b border-zinc-800 pb-4">
+                        <span class="font-bold uppercase">Midjourney</span>
+                        <span class="text-zinc-500 text-xs text-right">Visual Concept Generation</span>
+                    </li>
+                    <li class="flex justify-between items-center border-b border-zinc-800 pb-4">
+                        <span class="font-bold uppercase">Adobe Firefly</span>
+                        <span class="text-zinc-500 text-xs text-right">Generative Design & Textures</span>
+                    </li>
+                    <li class="flex justify-between items-center border-b border-zinc-800 pb-4">
+                        <span class="font-bold uppercase">Photoshop</span>
+                        <span class="text-zinc-500 text-xs text-right">Final Refinement & Art Direction</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="space-y-12">
+                <div class="flex gap-6">
+                    <span class="text-4xl font-black text-zinc-800">01</span>
+                    <div>
+                        <h5 class="font-bold uppercase">IDEA & STRATEGY</h5>
+                        <p class="text-zinc-500 text-sm mt-2">Developing the creative brief and conceptual backbone of the project.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6">
+                    <span class="text-4xl font-black text-zinc-800">02</span>
+                    <div>
+                        <h5 class="font-bold uppercase">AI PROMPTING</h5>
+                        <p class="text-zinc-500 text-sm mt-2">Iterative generation to explore visual possibilities and textures.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6">
+                    <span class="text-4xl font-black text-zinc-800">03</span>
+                    <div>
+                        <h5 class="font-bold uppercase">HUMAN REFINEMENT</h5>
+                        <p class="text-zinc-500 text-sm mt-2">Manual editing, typography, and composition to ensure professional standards.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="mt-16 text-center">
+            <a href="#contact" class="inline-block bg-purple-600 hover:bg-purple-700 text-white px-12 py-4 rounded-full font-bold uppercase text-xs tracking-widest transition-all">
+                Ready to collaborate? Let's talk →
+            </a>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <footer id="contact" class="py-24 px-6 md:px-20 bg-white text-black rounded-t-[3rem] md:rounded-t-[5rem]">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div>
+                <h2 class="text-7xl font-black uppercase tracking-tighter leading-none mb-8">Shiv Nandan <br> Bhaskar</h2>
+                <div class="space-y-4">
+                    <p class="text-xl font-bold italic">Ready to direct your next vision.</p>
+                    <div class="flex items-center gap-4 text-sm font-mono uppercase tracking-widest">
+                        <i data-lucide="mail"></i> <a href="mailto:shivnandanbhaskar@gmail.com" class="hover:text-blue-600 transition">shivnandanbhaskar@gmail.com</a>
+                    </div>
+                    <div class="flex items-center gap-4 text-sm font-mono uppercase tracking-widest">
+                        <i data-lucide="phone"></i> <a href="tel:+918102086650" class="hover:text-blue-600 transition">+91 8102086650</a>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col justify-end md:items-end space-y-6">
+                <div class="flex gap-4">
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full border border-zinc-300 flex items-center justify-center hover:bg-black hover:text-white transition font-bold">In</a>
+                    <a href="https://behance.net" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full border border-zinc-300 flex items-center justify-center hover:bg-black hover:text-white transition font-bold">Be</a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full border border-zinc-300 flex items-center justify-center hover:bg-black hover:text-white transition font-bold">Ig</a>
+                </div>
+                <p class="text-zinc-400 text-[10px] tracking-widest uppercase">© 2025 Shiv Nandan Bhaskar. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
