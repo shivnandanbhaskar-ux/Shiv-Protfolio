@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List App | Local Storage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        [x-cloak] { display: none !important; }
+        .task-enter { animation: slideIn 0.3s ease-out; }
+        .task-exit { animation: slideOut 0.3s ease-out; }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideOut {
+            from { opacity: 1; transform: translateX(0); }
+            to { opacity: 0; transform: translateX(100%); }
+        }
+        .checkbox-custom:checked {
+            accent-color: #3b82f6;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen py-8" x-data="todoApp()" x-cloak>
+
+    <div class="max-w-2xl mx-auto px-4">
+        <!-- HEADER -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-black text-gray-900 mb-2">My Tasks</h1>
+            <p class="text-gray-600 text-lg">Stay organized and get things done</p>
+        </div>
+
+        <!-- MAIN CARD -->
+        <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
+            
+            <!-- INPUT SECTION -->
+            <div class="bg-gradient-to-r from-blue-500 to-indigo-600 p-6 md:p-8">
+                <form @submit.prevent="addTask()" class="flex gap-2">
+                    <input 
+                        x-model="newTask" 
+                        @keyup.escape="newTask = ''"
+                        type="text" 
+                        placeholder="Add a new task..." 
+                        class="flex-1 px-6 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300 text-gray-900 placeholder-gray-500"
+                    >
+                    <button 
+                        type="submit"
+                        class="bg-white text-blue-600 px-6 py-3 rounded-lg font-bold hover:bg-blue-50 transition-colors duration-200 flex items-center gap-2"
+                    >
+                        <i data-lucide="plus" class="w-5 h-5"></i>
+                        <span class="hidden md:inline">Add</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- FILTERS -->
+            <div class="border-b border-gray-200 px-6 md:px-8 py-4 flex gap-3 overflow-x-auto">
+                <button 
+                    @click="filter = 'all'"
+                    :class="filter === 'all' ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'"
+                    class="px-4 py-2 rounded-full font-semibold transition-colors duration-200 whitespace-nowrap text-sm"
+                >
+                    All
+                </button>
+                <button 
+                    @click="filter = 'active'"
+                    :class="filter === 'active' ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'"
+                    class="px-4 py-2 rounded-full font-semibold transition-colors duration-200 whitespace-nowrap text-sm"
+                >
+                    Active
+                </button>
+                <button 
+                    @click="filter = 'completed'"
+                    :class="filter === 'completed' ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'"
+                    class="px-4 py-2 rounded-full font-semibold transition-colors duration-200 whitespace-nowrap text-sm"
+                >
+                    Completed
+                </button>
+            </div>
+
+            <!-- TASK STATS -->
+            <div class="grid grid-cols-3 gap-4 px-6 md:px-8 py-4 bg-gray-50 border-b border-gray-200 text-center">
+                <div>
+                    <p class="text-gray-600 text-sm font-medium">Total</p>
+                    <p class="text-2xl font-bold text-gray-900" x-text="tasks.length">0</p>
+                </div>
+                <div>
+                    <p class="text-gray-600 text-sm font-medium">Active</p>
+                    <p class="text-2xl font-bold text-blue-600" x-text="tasks.filter(t => !t.completed).length">0</p>
+                </div>
+                <div>
+                    <p class="text-gray-600 text-sm font-medium">Completed</p>
+                    <p class="text-2xl font-bold text-green-600" x-text="tasks.filter(t => t.completed).length">0</p>
+                </div>
+            </div>
+
+            <!-- TASKS LIST -->
+            <div class="divide-y divide-gray-200 max-h-96 overflow-y-auto">
+                <template x-if="filteredTasks.length === 0">
+                    <div class="p-8 text-center">
+                        <i data-lucide="inbox" class="w-16 h-16 text-gray-300 mx-auto mb-4"></i>
+                        <p class="text-gray-500 text-lg font-medium">
+                            <span x-show="filter === 'all'">No tasks yet. Add one to get started!</span>
+                            <span x-show="filter === 'active'">All tasks completed! Great job!</span>
+                            <span x-show="filter === 'completed'">No completed tasks yet.</span>
+                        </p>
+                    </div>
+                </template>
+
+                <template x-for="(task, index) in filteredTasks" :key="task.id" class="task-enter">
+                    <div class="p-6 hover:bg-gray-50 transition-colors duration-200 flex items-center gap-4 group">
+                        <!-- CHECKBOX -->
+                        <input 
+                            type="checkbox" 
+                            :checked="task.completed"
+                            @change="toggleTask(task.id)"
+                            class="checkbox-custom w-5 h-5 rounded cursor-pointer flex-shrink-0"
+                        >
+                        
+                        <!-- TASK TEXT -->
+                        <div class="flex-1 min-w-0">
+                            <p 
+                                :class="task.completed ? 'line-through text-gray-400' : 'text-gray-900'"
+                                class="text-lg font-medium break-words"
+                                x-text="task.text"
+                            ></p>
+                            <p class="text-sm text-gray-500 mt-1" x-text="formatDate(task.created)"></p>
+                        </div>
+
+                        <!-- PRIORITY BADGE -->
+                        <div 
+                            :class="{
+                                'bg-red-100 text-red-800': task.priority === 'high',
+                                'bg-yellow-100 text-yellow-800': task.priority === 'medium',
+                                'bg-green-100 text-green-800': task.priority === 'low'
+                            }"
+                            class="px-3 py-1 rounded-full text-xs font-semibold capitalize whitespace-nowrap"
+                            x-text="task.priority"
+                        ></div>
+
+                        <!-- DELETE BUTTON -->
+                        <button 
+                            @click="deleteTask(task.id)"
+                            class="opacity-0 group-hover:opacity-100 transition-opacity duration-200 p-2 text-red-500 hover:bg-red-50 rounded-lg"
+                            title="Delete task"
+                        >
+                            <i data-lucide="trash-2" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </template>
+            </div>
+
+            <!-- ACTION BUTTONS -->
+            <div class="bg-gray-50 border-t border-gray-200 px-6 md:px-8 py-4 flex gap-3 justify-between">
+                <button 
+                    @click="clearCompleted()"
+                    :disabled="tasks.filter(t => t.completed).length === 0"
+                    class="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 font-semibold transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+                >
+                    Clear Completed
+                </button>
+                <button 
+                    @click="clearAll()"
+                    :disabled="tasks.length === 0"
+                    class="px-4 py-2 text-white bg-red-500 rounded-lg hover:bg-red-600 font-semibold transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+                >
+                    Clear All
+                </button>
+            </div>
+        </div>
+
+        <!-- INFO SECTION -->
+        <div class="mt-8 bg-white rounded-xl shadow-lg p-6 md:p-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">✨ Features</h2>
+            <ul class="space-y-3 text-gray-700">
+                <li class="flex gap-3">
+                    <i data-lucide="check-circle" class="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5"></i>
+                    <span><strong>Local Storage:</strong> Your tasks are saved automatically and persist across sessions</span>
+                </li>
+                <li class="flex gap-3">
+                    <i data-lucide="check-circle" class="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5"></i>
+                    <span><strong>Filter Tasks:</strong> View all, active, or completed tasks with one click</span>
+                </li>
+                <li class="flex gap-3">
+                    <i data-lucide="check-circle" class="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5"></i>
+                    <span><strong>Real-time Stats:</strong> Track total, active, and completed tasks</span>
+                </li>
+                <li class="flex gap-3">
+                    <i data-lucide="check-circle" class="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5"></i>
+                    <span><strong>Priority Levels:</strong> Mark tasks as high, medium, or low priority</span>
+                </li>
+                <li class="flex gap-3">
+                    <i data-lucide="check-circle" class="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5"></i>
+                    <span><strong>Timestamps:</strong> See when each task was created</span>
+                </li>
+                <li class="flex gap-3">
+                    <i data-lucide="check-circle" class="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5"></i>
+                    <span><strong>Responsive Design:</strong> Works seamlessly on all devices</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function todoApp() {
+            return {
+                tasks: [],
+                newTask: '',
+                filter: 'all',
+
+                init() {
+                    this.loadTasks();
+                    this.$watch('tasks', () => this.saveTasks(), { deep: true });
+                    // Refresh icons when data changes
+                    this.$watch('tasks', () => {
+                        setTimeout(() => lucide.createIcons(), 0);
+                    }, { deep: true });
+                },
+
+                addTask() {
+                    if (this.newTask.trim() === '') return;
+                    
+                    const task = {
+                        id: Date.now(),
+                        text: this.newTask.trim(),
+                        completed: false,
+                        priority: 'medium',
+                        created: new Date().toISOString()
+                    };
+                    
+                    this.tasks.unshift(task);
+                    this.newTask = '';
+                },
+
+                toggleTask(id) {
+                    const task = this.tasks.find(t => t.id === id);
+                    if (task) task.completed = !task.completed;
+                },
+
+                deleteTask(id) {
+                    this.tasks = this.tasks.filter(t => t.id !== id);
+                },
+
+                clearCompleted() {
+                    this.tasks = this.tasks.filter(t => !t.completed);
+                },
+
+                clearAll() {
+                    if (confirm('Are you sure you want to delete all tasks? This cannot be undone.')) {
+                        this.tasks = [];
+                    }
+                },
+
+                get filteredTasks() {
+                    switch (this.filter) {
+                        case 'active':
+                            return this.tasks.filter(t => !t.completed);
+                        case 'completed':
+                            return this.tasks.filter(t => t.completed);
+                        default:
+                            return this.tasks;
+                    }
+                },
+
+                formatDate(dateString) {
+                    const date = new Date(dateString);
+                    const today = new Date();
+                    const yesterday = new Date(today);
+                    yesterday.setDate(yesterday.getDate() - 1);
+
+                    if (date.toDateString() === today.toDateString()) {
+                        return date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+                    } else if (date.toDateString() === yesterday.toDateString()) {
+                        return 'Yesterday';
+                    } else {
+                        return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                    }
+                },
+
+                saveTasks() {
+                    localStorage.setItem('todos', JSON.stringify(this.tasks));
+                },
+
+                loadTasks() {
+                    const saved = localStorage.getItem('todos');
+                    if (saved) {
+                        try {
+                            this.tasks = JSON.parse(saved);
+                        } catch (e) {
+                            console.error('Error loading tasks:', e);
+                            this.tasks = [];
+                        }
+                    }
+                }
+            };
+        }
+
+        // Initialize icons on load
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
